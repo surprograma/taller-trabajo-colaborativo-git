@@ -1,4 +1,4 @@
-# Gestión de proyectos en GitHub
+# Trabajo colaborativo en Git
 
 ![Logo](img/perfil.png)
 
@@ -16,28 +16,7 @@ Resuelve el típico problema que tenemos al trabajar en equipo sobre un document
 
 --
 
-- **1970: Sistema operativo Unix**
-  - Privativo, con licencias para algunas instituciones.
-- **1983: Proyecto GNU - _¡GNU is not Unix!_ 🐐**
-  - Objetivo: desarrollar un SO 100% libre.
-  - No tuvo éxito el kernel.
-- **1991: Primera versión de Linux 🐧**
-  - Desarrollado por Linus Torvalds, un finlandés de 21 años.
-- **2005: Primera versión de Git**
-  - Don Linus y amigues armaron su propio VCS.
-
---
-
-| ![](img/stallman.png) <!-- .element: height="300px" --> | ![](img/linus-1991.png) <!-- .element: height="300px" --> |
-| :-----------------------------------------------------: | :-------------------------------------------------------: |
-|                 Richard Stallman (RMS)                  |                      Linus Torvalds                       |
-
-![](img/gnu-logo.png) <!-- .element: height="150px" -->
-![](img/linux-logo.png) <!-- .element: height="150px" -->
-
---
-
-Volviendo a **Git** (que de eso se trataba 😅), mencionemos sus características:
+Principales características:
 
 - **Rápido**
 - Diseño **simple**
@@ -53,128 +32,236 @@ Volviendo a **Git** (que de eso se trataba 😅), mencionemos sus característic
 
 --
 
-⚠️⚠️⚠️
+Pero, ¿qué pasa cuando trabajamos con otrxs sobre un **mismo** proyecto?
 
-Git es _solamente_ un programa para controlar **versiones de archivos**.
-
-⚠️⚠️⚠️
+👨‍💻 👩‍💻 💻 🧑‍💻 👩‍💻
 
 ===
 
-## ¿Qué es GitHub?
+## Trabajo colaborativo
 
-![](img/github-logo.png) <!-- .element: height="200px" -->
-
---
-
-**Plataforma** que popularizó bastante Git. Surgió en 2008 y fue comprada por Microsoft en 2018.
-
-En sus orígenes, no era más que un **repositorio remoto** de Git con cierto esfuerzo para que lo podamos usar lxs simples mortales.
+Para trabajar en equipo necesitamos generar **acuerdos** mínimos sobre la forma de trabajo.
 
 --
 
-Obviamente, a Linus no le gusta (o al menos no le gustaba en 2012):
+- ¿Cómo nos dividimos las tareas?
+- ¿Qué convenciones utilizamos?
+- ¿Cada cuánto _integramos_ el código?
+- ¿Subimos código que no funciona?
+- ¿Qué cosas testeamos?
 
-![](img/linus-github-critica.png)
+Y un largo etcétera, que excede este taller...
 
 --
 
-De hecho, el desarrollo de Linux se sigue manejando por listas de mail como desde un comienzo.
+Aunque muchas veces damos por sentado o minimizamos estos acuerdos, resultan ser incluso más importantes que cuestiones tecnológicas que podamos discutir posteriormente.
+
+No hay herramienta que nos vaya a funcionar si no tenemos una **buena comunicación**. 🙊 🙉
+
+<!-- .element: class="fragment" -->
+
+===
+
+## Aparecen los conflictos 😬
+
+Tarde o temprano, llegará un momento en que dos personas meterán la mano sobre una misma línea de código...
+
+Dando paso así a los tan temidos **conflictos de Git**.
+
+--
+
+Cuando estamos trabajando con alguien más y queremos integrar nuestros cambios, pueden darse tres situaciones:
+
+1. Que hayamos tocado **diferentes archivos**. 👍 <!-- .element: class="fragment" -->
+1. Que hayamos tocado los **mismos archivos**, pero en **distintos lugares**. 👍 <!-- .element: class="fragment" -->
+1. Que hayamos tocado los **mismos archivos**, en los **mismos lugares**. 😱 <!-- .element: class="fragment" -->
+
+--
+
+Git puede lidiar **automáticamente** con las dos primeras situaciones, pero necesita intervención humana cuando ocurre la tercera.
+
+A eso se lo conoce como **conflicto**, y por consola nos lo reporta así:
+
+```shell
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+```
+
+===
+
+## Ocasionemos un conflicto
+
+Partiendo de este archivo:
+
+```md []
+🌐 ¡Hola mundo!
+
+👋 Me llamo _COMPLETAR_
+🗺️ y actualmente estoy en _COMPLETAR_.
+
+📆 En los próximos días, me gustaría _COMPLETAR_.
+```
+
+--
+
+Vamos a asumir que Pancho y Delfina están trabajando, sin comunicarse entre sí, y realizan modificaciones.
+
+```md []
+🌐 ¡Hola gente!
+
+👋 Me llamo Pancho
+🗺️ y actualmente estoy en Federación, Entre Ríos.
+
+📆 En los próximos días, me gustaría _COMPLETAR_.
+```
+
+```md []
+🌐 ¡Hola mundo!
+
+👋 Me llamo Delfina
+🗺️ y actualmente estoy en Paso de los Libres, Corrientes.
+
+📆 En los próximos días, me gustaría volver a Entre Ríos.
+```
+
+--
 
 ```diff
-diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-index 3589febc6d31928f85ddc40e0469f3..1804287c1b792b8aa0e964b17eb002b6b1115258 100644
---- a/mm/page_alloc.c
-+++ b/mm/page_alloc.c
-@@ -3706,10 +3706,10 @@ struct page *rmqueue(struct zone *preferred_zone,
- 	 * allocate greater than order-1 page units with __GFP_NOFAIL.
- 	 */
- 	WARN_ON_ONCE((gfp_flags & __GFP_NOFAIL) && (order > 1));
--	spin_lock_irqsave(&zone->lock, flags);
+-🌐 ¡Hola mundo!
++🌐 ¡Hola gente!
 
- 	do {
- 		page = NULL;
-+		spin_lock_irqsave(&zone->lock, flags);
- 		/*
- 		 * order-0 request can reach here when the pcplist is skipped
- 		 * due to non-CMA allocation context. HIGHATOMIC area is
-@@ -3721,15 +3721,15 @@ struct page *rmqueue(struct zone *preferred_zone,
- 			if (page)
- 				trace_mm_page_alloc_zone_locked(page, order, migratetype);
- 		}
-2.35.1.616.g0bdcbb4464-goog
+-👋 Me llamo _COMPLETAR_
+-🗺️ y actualmente estoy en _COMPLETAR_.
++👋 Me llamo Pancho
++🗺️ y actualmente estoy en Federación, Entre Ríos.
+
+ 📆 En los próximos días, me gustaría _COMPLETAR_.
+```
+
+¿Qué creen que ocurrirá al intentar hacer un _merge_?
+
+<!-- .element: class="fragment" -->
+
+```diff
+ 🌐 ¡Hola mundo!
+
+-👋 Me llamo _COMPLETAR_
+-🗺️ y actualmente estoy en _COMPLETAR_.
++👋 Me llamo Delfina
++🗺️ y actualmente estoy en Paso de los Libres, Corrientes.
+
+-📆 En los próximos días, me gustaría _COMPLETAR_.
++📆 En los próximos días, me gustaría volver a Entre Ríos.
+```
+
+--
+
+¡Bingo! 🎉
+
+Va a ocurrir un **conflicto**, específicamente en las líneas 3 y 4, que fue las que ambxs modificaron.
+
+El conflicto lo tendrá la última persona que integre los cambios, Pancho en este ejemplo.
+
+===
+
+## ¿Cómo se ve un conflicto?
+
+Lo que Git hace es agregar unas **marcas** en el archivo, que nos indican **dónde ocurrió el conflicto**.
+
+Luego, hay varios programas que muestran eso de distintas maneras.
+
+--
+
+En texto plano:
+
+```text
+🌐 ¡Hola gente!
+
+<<<<<<< HEAD
+👋 Me llamo Pancho
+🗺️ y actualmente estoy en Federación, Entre Ríos.
+=======
+👋 Me llamo Delfina
+🗺️ y actualmente estoy en Paso de los Libres, Corrientes.
+>>>>>>> delfina
+
+📆 En los próximos días, me gustaría volver a Entre Ríos.
+```
+
+--
+
+Con el comando `git diff`:
+
+```diff
+index 977e95a,2aef011..0000000
+--- a/README.md
++++ b/README.md
+@@@ -1,6 -1,6 +1,11 @@@
+-🌐 ¡Hola mundo!
++🌐 ¡Hola gente!
+
+++<<<<<<< HEAD
++👋 Me llamo Pancho
++🗺️ y actualmente estoy en Federación, Entre Ríos.
+++=======
++ 👋 Me llamo Delfina
++ 🗺️ y actualmente estoy en Corrientes.
+++>>>>>>> delfina
+
+- 📆 En los próximos días, me gustaría _COMPLETAR_.
++ 📆 En los próximos días, me gustaría volver a Entre Ríos.
 ```
 
 <!-- .element: class="fullscreen" -->
 
---
-
-Especialmente desde la compra por parte de M$, GitHub fue sumando varias herramientas de gestión y automatización de proyectos.
-
-- **Issues**
-- **Wiki**
-- **Actions**
-- **Projects**
-- **Pages**
+<small>(Nótese que nos muestra también las partes que pudo integrar automáticamente.)</small>
 
 --
 
-⚠️⚠️⚠️
+Con un editor como el VScode:
 
-GitHub es un **servidor remoto** de Git, que va camino a convertirse en una **plataforma** para el manejo de proyectos de software.
+![](img/conflicto-vscode.png)
 
-⚠️⚠️⚠️
+--
+
+Con el VScode también, pero en modo `Compare`:
+
+![](img/compare-vscode.png)
 
 ===
 
 ## 🦾 Manos a la obra
 
-Creemos un CV online.
+Provoquen ustedes un conflicto, para ver cómo es.
 
-- **Semilla:** https://github.com/surprograma/semilla-cv-jekyll
-- **VScode online:** https://vscode.dev
-
---
-
-Con este sencillo ejemplo, involucramos dos productos de GitHub: `Actions` y `Pages`.
-
-Cuando hacemos un push a `main` (o `master`) se dispara un proceso (`Action`) que "compila" nuestra página y la pone online (`Pages`).
+Trabajando sobre el archivo `README.md`, hagan modificaciones y luego súbanlas al repositorio.
 
 ===
 
-## Gestión de un proyecto
+## Estrategias para evitarlos
 
-Además de tirar código, hay muchas otras tareas que hacemos en proyectos de software:
+- Prevenir (hablar) 👍
+- Integrar rápido 👍
+- "Bloquear" archivos 🤮
 
-- Definir funcionalidades
-- Asignar responsabilidades
-- Proyectar avances
-- Pensar y discutir con otrxs
+===
 
---
+## Resolución
 
-Tener un _backlog_ o listado de tareas es tan importante como tener un equipo que pueda desarrollarlas.
-
-![](img/github-project.png)
-
---
-
-GitHub tiene dos herramientas para esto:
-
-- `Issues:` la más conocida.
-- `Projects:` la más nueva y orientada a gestión.
+- Hablar (de nuevo)
+- Valerse de buenas herramientas
+- Distintas opciones: incoming, current, both
 
 ===
 
 ## 🦾 Manos a la obra
 
-Cargar issues y cerrarlas desde un commit.
+Elijan quién es A y quién es B. Hagan lo que sigue, **en orden** y **hablando entre ustedes**.
 
-===
-
-## 🦾 Manos a la obra
-
-Crear un project y draft issues.
+|             |                                                                                              |
+| ----------- | -------------------------------------------------------------------------------------------- |
+| **Primero** | A edita el archivo A.md y sube. <br/> B edita el archivo A.md y sube, resuelve el conflicto. |
+| **Después** | B edita el archivo B.md y sube. <br/> A edita el archivo B.md y sube, resuelve el conflicto. |
 
 ===
 
