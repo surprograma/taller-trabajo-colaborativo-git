@@ -72,9 +72,14 @@ Dando paso así a los tan temidos **conflictos de Git**.
 
 Cuando estamos trabajando con alguien más y queremos integrar nuestros cambios, pueden darse tres situaciones:
 
-1. Que hayamos tocado **diferentes archivos**. 👍 <!-- .element: class="fragment" -->
-1. Que hayamos tocado los **mismos archivos**, pero en **distintos lugares**. 👍 <!-- .element: class="fragment" -->
-1. Que hayamos tocado los **mismos archivos**, en los **mismos lugares**. 😱 <!-- .element: class="fragment" -->
+1. Que hayamos tocado **diferentes archivos**. 👍
+<!-- .element: class="fragment" -->
+
+1. Que hayamos tocado los **mismos archivos**, pero en **distintos lugares**. 👍
+<!-- .element: class="fragment" -->
+
+1. Que hayamos tocado los **mismos archivos**, en los **mismos lugares**. 😱
+<!-- .element: class="fragment" -->
 
 --
 
@@ -238,19 +243,57 @@ Trabajando sobre el archivo `README.md`, hagan modificaciones y luego súbanlas 
 
 ===
 
-## Estrategias para evitarlos
+## 👀 Demostración
 
-- Prevenir (hablar) 👍
-- Integrar rápido 👍
-- "Bloquear" archivos 🤮
+Vemos cómo resolverlo usando la consola.
 
 ===
 
-## Resolución
+## Estrategias para evitarlos
 
-- Hablar (de nuevo)
-- Valerse de buenas herramientas
-- Distintas opciones: incoming, current, both
+Si bien siempre aparecerán conflictos, podemos hacer varias cosas para **minimizar la probabilidad** de que ocurran:
+
+1. Comunicarnos y dividir tareas 👍
+<!-- .element: class="fragment" -->
+
+1. Integrar rápido 👍
+<!-- .element: class="fragment" -->
+
+1. "Bloquear" archivos 🤮
+<!-- .element: class="fragment" -->
+
+--
+
+De todas formas, aprender a resolver conflictos **es necesario** para el trabajo en, prácticamente, cualquier proyecto de programación.
+
+===
+
+## ¿Cómo resolverlos?
+
+Cuando no queda otra, hay ciertas cosas que pueden ayudarnos a que la tarea sea más amena:
+
+1. Hablar con la o las personas que modificaron el mismo archivo.
+<!-- .element: class="fragment" -->
+
+1. Usar buenas herramientas.
+<!-- .element: class="fragment" -->
+
+1. Tener una buena batería de tests automatizados.
+<!-- .element: class="fragment" -->
+
+--
+
+En esencia, lo que hay que hacer es:
+
+1. Dejar el archivo como queremos que quede.
+1. Agregar el archivo y hacer un _commit_:
+
+```bash
+git add README.md # o directamente, git add .
+git commit
+```
+
+En este caso no es necesario (ni recomendable) escribir el mensaje del commit. Git lo hará por nosotrxs.
 
 ===
 
@@ -262,6 +305,12 @@ Elijan quién es A y quién es B. Hagan lo que sigue, **en orden** y **hablando 
 | ----------- | -------------------------------------------------------------------------------------------- |
 | **Primero** | A edita el archivo A.md y sube. <br/> B edita el archivo A.md y sube, resuelve el conflicto. |
 | **Después** | B edita el archivo B.md y sube. <br/> A edita el archivo B.md y sube, resuelve el conflicto. |
+
+===
+
+## 👀 Demostración
+
+Vemos cómo resolverlo usando el VScode.
 
 ===
 
