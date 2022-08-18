@@ -64,9 +64,13 @@ No hay herramienta que nos vaya a funcionar si no tenemos una **buena comunicaci
 
 ## Aparecen los conflictos 😬
 
-Tarde o temprano, llegará un momento en que dos personas meterán la mano sobre una misma línea de código...
+Tarde o temprano, llegará un momento en que dos personas meterán la mano sobre el mismo archivo...
 
 Dando paso así a los tan temidos **conflictos de Git**.
+
+--
+
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/3086d7d181a0f79217a93cfa6da45182/c023dc44ff59/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
 
 --
 
@@ -314,7 +318,9 @@ Vemos cómo resolverlo usando el VScode.
 
 ===
 
-# ¿Preguntas?
+<div style='position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;'><iframe sandbox='allow-scripts allow-same-origin allow-presentation' allowfullscreen='true' allowtransparency='true' frameborder='0' height='315' src='https://www.mentimeter.com/app/presentation/18d1d55422cda76da3554d6cce326516/8e35d5f6bad4/embed' style='position: absolute; top: 0; left: 0; width: 100%; height: 100%;' width='420'></iframe></div>
+
+--
 
 <div class="red-social">
   <i class="fab fa-youtube color"></i>
