@@ -5,7 +5,7 @@ import Zoom from 'reveal.js/plugin/zoom/zoom.esm.js';
 import PlantUml from './plantUml';
 
 import 'reveal.js/dist/reveal.css';
-import 'reveal.js/dist/theme/beige.css';
+import 'reveal.js/dist/theme/night.css';
 import 'reveal.js/plugin/highlight/zenburn.css';
 
 const slide = new Reveal({

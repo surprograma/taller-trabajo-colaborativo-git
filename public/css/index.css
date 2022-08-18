@@ -17,3 +17,12 @@
 .fullscreen code {
   max-height: fit-content !important;
 }
+
+h1 {
+  font-size: 2.8em !important;
+  text-transform: uppercase !important;
+}
+
+strong {
+  color: #e69055 !important;
+}
